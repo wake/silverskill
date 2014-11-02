@@ -85,3 +85,28 @@
     return $app->redirect ($app->url ('index') .'#list');
 
   })->bind ('POST:signup');
+
+
+  /**
+   *
+   * signup
+   *
+   */
+  $app->post ('/request/{id}', function (Request $request, $id) use ($app) {
+
+    $data = [
+      'name'  => $request->request->get ('name'),
+      'email' => $request->request->get ('email'),
+    ];
+
+    $req = Model::factory ('Request')->create ();
+
+    $req->eid        = $id;
+    $req->name       = $data['name'];
+    $req->email      = $data['email'];
+    $req->createdate = date ('Y-m-d H:i:s');
+    $req->save ();
+
+    return 'ok';
+
+  })->bind ('POST:request');

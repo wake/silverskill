@@ -229,7 +229,7 @@
    * Load database models
    *
    */
-  $app['StructureLoader'] (['event'], _ROOT . '/model');
+  $app['StructureLoader'] (['event', 'request'], _ROOT . '/model');
 
 
   /**
