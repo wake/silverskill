@@ -135,6 +135,8 @@
 
       $(this).parent ().next ().slideDown ();
 
+      setTimeout("jQuery('.is_masonry').masonry();",1000);
+
       return false;
 
     });
