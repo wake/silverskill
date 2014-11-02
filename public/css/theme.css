@@ -4298,7 +4298,7 @@ article.contentarea.sp_contentarea {
 
 /* Fullscreen blog*/
 .fullscreen_block {
-    padding: 20px 0 0 20px;
+    padding: 20px 20px 0 20px;
     /*overflow:hidden;*/
     text-align: center;
 }

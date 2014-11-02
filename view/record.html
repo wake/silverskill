@@ -1,0 +1,133 @@
+{% extends "layout.html" %}
+
+{% set page = 'record' %}
+
+
+{% block content %}
+    <br />
+    <br />
+
+    <h1>拍攝 / 紀錄</h1>
+
+    <div class="blogpost_user_meta">
+      <div>覺得有價值？</div>
+      <div>
+        <object width="400" height="224" > 
+         <param name="allowfullscreen" value="true" /> 
+         <param name="allowscriptaccess" value="always" /> 
+         <param name="movie" value="http://www.facebook.com/v/xxx" /> 
+         <embed src="http://www.facebook.com/v/475115999169754" type="application/x-shockwave-flash"  
+           allowscriptaccess="always" allowfullscreen="true" width="400" height="224"> 
+         </embed> 
+        </object> 
+      </div>
+    </div>
+
+  <script type="text/javascript" src="js/jquery-ui.min.js"></script>    
+  <script type="text/javascript" src="js/modules.js"></script>
+  <script type="text/javascript" src="js/theme.js"></script>
+  <script>
+  jQuery(document).ready(function() {
+    "use strict";
+    jQuery('.fw_background').height(jQuery(window).height());
+    jQuery('.main_header').removeClass('hided');
+    jQuery('.fullscreen_block').addClass('loaded');
+    if (jQuery(window).width() > 1024) {
+    if (jQuery('.bg_video').size() > 0) {
+      if (((jQuery(window).height()+150)/9)*16 > jQuery(window).width()) {        
+      jQuery('iframe').height(jQuery(window).height()+150).width(((jQuery(window).height()+150)/9)*16);
+      jQuery('iframe').css({'margin-left' : (-1*jQuery('iframe').width()/2)+'px', 'top' : "-75px", 'margin-top' : '0px'});
+      } else {
+      jQuery('iframe').width(jQuery(window).width()).height(((jQuery(window).width())/16)*9);
+      jQuery('iframe').css({'margin-left' : (-1*jQuery('iframe').width()/2)+'px', 'margin-top' : (-1*jQuery('iframe').height()/2)+'px', 'top' : '50%'});
+      }
+    }
+    } else if (jQuery(window).width() < 760) {
+    jQuery('.bg_video').height(jQuery(window).height()-jQuery('.main_header').height());
+    jQuery('iframe').height(jQuery(window).height()-jQuery('.main_header').height());
+    } else {
+    jQuery('.bg_video').height(jQuery(window).height());
+    jQuery('iframe').height(jQuery(window).height());       
+    }
+    jQuery('html').addClass('without_border');
+  });
+  jQuery(window).resize(function() {
+    "use strict";
+    jQuery('.fw_background').height(jQuery(window).height());
+    if (jQuery(window).width() > 1024 ) {
+    if (jQuery('.bg_video').size() > 0) {
+      if (((jQuery(window).height()+150)/9)*16 > jQuery(window).width()) {
+      jQuery('iframe').height(jQuery(window).height()+150).width(((jQuery(window).height()+150)/9)*16);
+      jQuery('iframe').css({'margin-left' : (-1*jQuery('iframe').width()/2)+'px', 'top' : "-75px", 'margin-top' : '0px'});
+      } else {
+      jQuery('iframe').width(jQuery(window).width()).height(((jQuery(window).width())/16)*9);
+      jQuery('iframe').css({'margin-left' : (-1*jQuery('iframe').width()/2)+'px', 'margin-top' : (-1*jQuery('iframe').height()/2)+'px', 'top' : '50%'});
+      }
+    }
+    } else if (jQuery(window).width() < 760) {
+    jQuery('.bg_video').height(jQuery(window).height()-jQuery('.main_header').height());
+    jQuery('iframe').height(jQuery(window).height()-jQuery('.main_header').height());
+    } else {
+    jQuery('.bg_video').height(jQuery(window).height());
+    jQuery('iframe').height(jQuery(window).height());       
+    }
+  });
+  </script>
+
+  <script>
+    jQuery(window).resize(function () {
+    "use strict";
+    jQuery('.is_masonry').masonry();
+    });
+  jQuery(document).ready(function($){
+    "use strict";
+    jQuery('.is_masonry').masonry();
+    setTimeout("jQuery('.is_masonry').masonry();",1000);
+    setTimeout("jQuery('.is_masonry').masonry();",2000);      
+    jQuery('.pf_output_container').each(function(){
+    if (jQuery(this).html() == '') {
+      jQuery(this).parents('.fw_preview_wrapper').addClass('no_pf');
+    } else {
+      jQuery(this).parents('.fw_preview_wrapper').addClass('has_pf');
+    }
+    });           
+  });
+  </script>
+  <script>
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    function onPlayerReady(event) {}
+    function onPlayerStateChange(event) {}
+    function stopVideo() {
+      player.stopVideo();
+    }
+    function onYouTubeIframeAPIReady() {
+    "use strict";
+    
+      new YT.Player('player5172', {
+        height: '476',
+        width: '100%',
+        playerVars: { 'autoplay': 0, 'controls': 1 },
+        videoId: 'p4hIzgqA9io',
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+      
+      new YT.Player('player4441', {
+        height: '677',
+        width: '100%',
+        playerVars: { 'autoplay': 0, 'controls': 1 },
+        videoId: 'aPUgeS4G1Hc',
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+  </script>
+{% endblock content %}

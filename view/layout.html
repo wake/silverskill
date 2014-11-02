@@ -1,0 +1,103 @@
+{%- set company = '技憶流' -%}
+{%- set page = page|default('index') -%}
+<!DOCTYPE html>
+<html class="fullscreen_page sticky_menu">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="shortcut icon" href="img/favico.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="img/apple_icons_57x57.png">
+<link rel="apple-touch-icon" sizes="72x72" href="img/apple_icons_72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="img/apple_icons_114x114.png">
+<title>{{ company }} | 記憶 傳承 自我實現</title>
+
+<meta property="og:title" content="{{ company }} | 記憶 傳承 自我實現" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="http://www.skillme.co/img/fb-cover.jpg" />
+<meta property="og:url" content="http://www.skillme.co" />
+<meta name='description' content='{{ company }}。協助年長者用更好的方式找回自我。'>
+
+<link href="http://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Roboto:400,300,500,900" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/theme.css" type="text/css" media="all" />
+<link rel="stylesheet" href="css/responsive.css" type="text/css" media="all" />
+<link rel="stylesheet" href="css/custom.css" type="text/css" media="all" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<style>
+.fw_background {
+  position: inherit !important;
+}
+.bg1 {
+  background: url(photos/origin_6312717207.jpg);
+  background-position: 0 0 !important;
+}
+.box_date img {
+  border-radius: 26px 26px;
+}
+a {
+  color: #000 !important;
+}
+.btn_type10 {
+  background-color: #FFAE00 !important;
+  color: #fff !important;
+}
+.btn_type3:hover {
+  background-color: #CFD1D1 !important;
+}
+.blogpost_user_meta {
+  padding-left: 25px;
+  margin-bottom: 25px;
+}
+</style>
+</head>
+<body>
+  <header class="main_header">
+    <div class="header_wrapper">
+      <div class="logo_sect">
+        <a href="{{ url('index') }}" class="logo"><img src="img/skillme-logo.jpg" alt=""  class="logo_def"><img src="img/retina/logo.png" alt="" class="logo_retina"></a>
+        <div class="slogan">記憶&nbsp;&nbsp;傳承&nbsp;&nbsp;自我實現</div>
+      </div>                       
+      <div class="header_rp">
+        <nav>
+          <div class="menu-main-menu-container">
+            <ul id="menu-main-menu" class="menu">
+              <li class="{{ page == 'index' ? 'current-menu-parent' }}">
+                <a href="{{ url('index') }}"><span>首頁</span></a>
+              </li>
+              <li class="{{ page == 'record' ? 'current-menu-parent' }}">
+                <a href="{{ url('record') }}"><span>拍攝 / 紀錄</span></a>
+              </li>
+              <li class="{{ page == 'howto' ? 'current-menu-parent' }}">
+                <a href="{{ url('howto') }}"><span>如何開始</span></a>
+              </li>
+              <li>
+                <a href="mailto:skillme2014@gmail.com"><span>聯絡我們</span></a>
+              </li>
+            </ul>
+          </div>
+          <div class="search_fadder"></div>
+          <div class="header_search">
+            <form name="search_form" method="get" action="#" class="search_form">
+              <input type="text" name="s" value="" placeholder="Search the site..." class="field_search">
+            </form> 
+          </div>                
+        </nav>            
+        <a class="search_toggler" href="#"></a>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </header>
+
+  {% if page == 'index' %}  
+  <div class="fullscreen_block fw_background bg_image bg1"></div>       
+  {% endif %}
+
+  <div class="content_bg"></div>
+  <div class="fullscreen_block">
+
+    {% block content %}{% endblock %}
+
+  </div>
+
+</body>
+</html>

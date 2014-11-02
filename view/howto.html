@@ -1,0 +1,186 @@
+{% extends "layout.html" %}
+
+{% set page = 'howto' %}
+
+
+{% block content %}
+    <br />
+    <br />
+
+    <h1>如何開始透過 {{company}}，讓長輩與年輕人交流</h1>
+
+    <div class="blogpost_user_meta">
+      <h3>第一步</h3>
+      <div></div>
+    </div>
+
+    <div class="blogpost_user_meta">
+      <h3>第二步</h3>
+      <div></div>
+    </div>
+
+    <style>
+    .wx {
+      text-align: left;
+      height: 40px;
+      line-height: 40px;
+    }
+    </style>
+
+    <div class="blogpost_user_meta">
+      <h3>第三步：如果長輩被說服了，登載長輩可以分享或交流的資料</h3>
+      <div>
+       <div class="row">
+        <div class="span12 module_number_2 module_cont pb50 module_html">
+            <div class="module_content contact_form">
+                  <div id="note"></div>
+                  <div id="fields"> 
+                      <form id="signup" action="{{ url('POST:signup') }}" method="POST" enctype="multipart/form-data">
+                          <div class="w50 pr7"><input type="text" id="name" name="name" value="" placeholder="如何稱呼長輩 *" /></div>
+                          <div class="w50"><input type="text" id="location" name="location" value="" placeholder="長輩現在居住地 *" /></div>
+                          <div class="clear"></div>
+                          <div class="w100 wx">互動介紹圖片：<input type="file" name="photo" value=""/></div>
+                          <div class="w100 wx">長輩個人圖像：<input type="file" name="avatar" value=""/></div>
+                          <input type="text" id="title" name="title" value="" placeholder="互動主題" />                            
+                          <textarea name="desc" id="desc" placeholder="互動簡介 *"></textarea> 
+                          <input type="submit" value="儲存"> 
+                      </form> 
+                  </div>                                                       
+              </div>
+          </div><!-- .module_cont -->
+        </div>
+      </div>
+    </div>
+
+  <script type="text/javascript" src="js/jquery-ui.min.js"></script>    
+  <script type="text/javascript" src="js/modules.js"></script>
+  <script type="text/javascript" src="js/theme.js"></script>
+  <script>
+  $(function () {
+    $('#signup').submit (function () {
+
+      var err = [];
+
+      if ($('#name').val () == '')
+        err.push ('如何稱呼長輩');
+
+      if ($('#location').val () == '')
+        err.push ('長輩現在居住地');
+
+      if ($('#title').val () == '')
+        err.push ('互動主題');
+
+      if ($('#desc').val () == '')
+        err.push ('互動簡介');
+
+      if (err.length > 0) {
+        alert ('您尚未輸入' + err.join (', '));
+        return false;
+      }
+
+    });
+  })
+  jQuery(document).ready(function() {
+    "use strict";
+    jQuery('.fw_background').height(jQuery(window).height());
+    jQuery('.main_header').removeClass('hided');
+    jQuery('.fullscreen_block').addClass('loaded');
+    if (jQuery(window).width() > 1024) {
+    if (jQuery('.bg_video').size() > 0) {
+      if (((jQuery(window).height()+150)/9)*16 > jQuery(window).width()) {        
+      jQuery('iframe').height(jQuery(window).height()+150).width(((jQuery(window).height()+150)/9)*16);
+      jQuery('iframe').css({'margin-left' : (-1*jQuery('iframe').width()/2)+'px', 'top' : "-75px", 'margin-top' : '0px'});
+      } else {
+      jQuery('iframe').width(jQuery(window).width()).height(((jQuery(window).width())/16)*9);
+      jQuery('iframe').css({'margin-left' : (-1*jQuery('iframe').width()/2)+'px', 'margin-top' : (-1*jQuery('iframe').height()/2)+'px', 'top' : '50%'});
+      }
+    }
+    } else if (jQuery(window).width() < 760) {
+    jQuery('.bg_video').height(jQuery(window).height()-jQuery('.main_header').height());
+    jQuery('iframe').height(jQuery(window).height()-jQuery('.main_header').height());
+    } else {
+    jQuery('.bg_video').height(jQuery(window).height());
+    jQuery('iframe').height(jQuery(window).height());       
+    }
+    jQuery('html').addClass('without_border');
+  });
+  jQuery(window).resize(function() {
+    "use strict";
+    jQuery('.fw_background').height(jQuery(window).height());
+    if (jQuery(window).width() > 1024 ) {
+    if (jQuery('.bg_video').size() > 0) {
+      if (((jQuery(window).height()+150)/9)*16 > jQuery(window).width()) {
+      jQuery('iframe').height(jQuery(window).height()+150).width(((jQuery(window).height()+150)/9)*16);
+      jQuery('iframe').css({'margin-left' : (-1*jQuery('iframe').width()/2)+'px', 'top' : "-75px", 'margin-top' : '0px'});
+      } else {
+      jQuery('iframe').width(jQuery(window).width()).height(((jQuery(window).width())/16)*9);
+      jQuery('iframe').css({'margin-left' : (-1*jQuery('iframe').width()/2)+'px', 'margin-top' : (-1*jQuery('iframe').height()/2)+'px', 'top' : '50%'});
+      }
+    }
+    } else if (jQuery(window).width() < 760) {
+    jQuery('.bg_video').height(jQuery(window).height()-jQuery('.main_header').height());
+    jQuery('iframe').height(jQuery(window).height()-jQuery('.main_header').height());
+    } else {
+    jQuery('.bg_video').height(jQuery(window).height());
+    jQuery('iframe').height(jQuery(window).height());       
+    }
+  });
+  </script>
+
+  <script>
+    jQuery(window).resize(function () {
+    "use strict";
+    jQuery('.is_masonry').masonry();
+    });
+  jQuery(document).ready(function($){
+    "use strict";
+    jQuery('.is_masonry').masonry();
+    setTimeout("jQuery('.is_masonry').masonry();",1000);
+    setTimeout("jQuery('.is_masonry').masonry();",2000);      
+    jQuery('.pf_output_container').each(function(){
+    if (jQuery(this).html() == '') {
+      jQuery(this).parents('.fw_preview_wrapper').addClass('no_pf');
+    } else {
+      jQuery(this).parents('.fw_preview_wrapper').addClass('has_pf');
+    }
+    });           
+  });
+  </script>
+  <script>
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    function onPlayerReady(event) {}
+    function onPlayerStateChange(event) {}
+    function stopVideo() {
+      player.stopVideo();
+    }
+    function onYouTubeIframeAPIReady() {
+    "use strict";
+    
+      new YT.Player('player5172', {
+        height: '476',
+        width: '100%',
+        playerVars: { 'autoplay': 0, 'controls': 1 },
+        videoId: 'p4hIzgqA9io',
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+      
+      new YT.Player('player4441', {
+        height: '677',
+        width: '100%',
+        playerVars: { 'autoplay': 0, 'controls': 1 },
+        videoId: 'aPUgeS4G1Hc',
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+  </script>
+{% endblock content %}

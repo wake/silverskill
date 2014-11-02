@@ -17,6 +17,7 @@
 
     $event = Model::factory ('Event')
       ->where ('state', 1)
+      ->order_by_desc ('id')
       ->find_array ();
 
     return $app
@@ -24,3 +25,63 @@
       ->render ('index.html');
 
   })->bind ('index');
+
+
+  /**
+   *
+   * record
+   *
+   */
+  $app->get ('/record', function (Request $request) use ($app) {
+
+    return $app
+      ->render ('record.html');
+
+  })->bind ('record');
+
+
+  /**
+   *
+   * howto
+   *
+   */
+  $app->get ('/howto', function (Request $request) use ($app) {
+
+    return $app
+      ->render ('howto.html');
+
+  })->bind ('howto');
+
+
+  /**
+   *
+   * signup
+   *
+   */
+  $app->post ('/signup', function (Request $request) use ($app) {
+
+    $data = [
+      'title'    => $request->request->get ('title'),
+      'location' => $request->request->get ('location'),
+      'desc'     => $request->request->get ('desc'),
+      'photo'    => $request->files->get ('photo'),
+      'avatar'   => $request->files->get ('avatar'),
+    ];
+
+    $data['photo']  = $app['file.upload'] ($data['photo'], _UPLOAD . '/event');
+    $data['avatar'] = $app['file.upload'] ($data['avatar'], _UPLOAD . '/event');
+
+    $event = Model::factory ('Event')->create ();
+
+    $event->title      = $data['title'];
+    $event->location   = $data['location'];
+    $event->desc       = $data['desc'];
+    $event->state      = 1;
+    $event->photo      = $data['photo'];
+    $event->avatar     = $data['avatar'];
+    $event->createdate = date ('Y-m-d H:i:s');
+    $event->save ();
+
+    return $app->redirect ($app->url ('index') .'#list');
+
+  })->bind ('POST:signup');
