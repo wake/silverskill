@@ -1,0 +1,35 @@
+{
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/wake/php-array-kit"
+    }
+  ],
+
+  "require": {
+
+    "silex/silex": "~1.2",
+    "j4mie/idiorm": "1.3.*",
+    "j4mie/paris": "1.3.*",
+    "twig/twig": "1.*",
+
+    "symfony/form": "2.5.2",
+    "symfony/validator": "2.5.2",
+    "symfony/config": "~2.3",
+    "symfony/translation": "~2.3",
+    "symfony/locale": "~2.3",
+    "symfony/twig-bridge": "~2.3",
+    "symfony/security": "~2.3",
+    "symfony/yaml": "2.5.3",
+
+    "facebook/php-sdk": "dev-master",
+    "gregwar/captcha": "dev-master",
+
+    "twig/extensions": "dev-master",
+
+    "swiftmailer/swiftmailer": ">=4.1.2,<4.2-dev",
+    "kriswallsmith/assetic": "1.2.*@dev",
+    "ircmaxell/password-compat": "dev-master",
+    "wake/php-array-kit": "dev-master"
+  }
+}

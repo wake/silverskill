@@ -1,0 +1,65 @@
+{% extends "admin/layout.html" %}
+
+{% set page = 'event' %}
+
+{% block content %}
+
+    <!-- Page Heading -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                List
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                </li>
+                <li class="active">
+                    <i class="fa fa-table"></i> List
+                </li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Data list <button type="button" onclick="location.href='{{ url('admin/event/add') }}'" class="btn btn-lg btn-default">Add</button></h2>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Location</th>
+                            <th>State</th>
+                            <th>Desc</th>
+                            <th>Photo</th>
+                            <th>Avatar</th>
+                            <th>Create</th>
+                            <th>Operate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for e in event %}
+                        <tr>
+                            <td>{{ e.title }}</td>
+                            <td>{{ e.location }}</td>
+                            <td>{{ e.state }}</td>
+                            <td>{{ e.desc }}</td>
+                            <td>{{ e.photo and e.photo != '' ? ('<img width="30" src="../' ~ e.photo ~ '" />')|raw }}</td>
+                            <td>{{ e.avatar and e.avatar != '' ? ('<img width="30" src="../' ~ e.avatar ~ '" />')|raw }}</td>
+                            <td>{{ e.createdate }}</td>
+                            <td><a href="{{ url('admin/event/edit', {id: e.id}) }}">Edit</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container-fluid -->
+
+{% endblock content %}

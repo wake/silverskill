@@ -1,0 +1,84 @@
+{% extends "admin/layout.html" %}
+
+{% set page = 'list_vege' %}
+
+{% if operate == 'add' %}
+{% set mode = {url: url('POST:admin/event/add')} %}
+{% else %}
+{% set mode = {url: url('POST:admin/event/edit', {id: id})} %}
+{% endif %}
+
+{% block content %}
+
+  <!-- Page Heading -->
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">
+        List
+      </h1>
+      <ol class="breadcrumb">
+        <li>
+          <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+        </li>
+        <li class="active">
+          <i class="fa fa-table"></i> List
+        </li>
+      </ol>
+    </div>
+  </div>
+  <!-- /.row -->
+
+  <div class="row">
+    <div class="col-lg-6">
+      <h2>Data add</h2>
+
+      <form role="form" method="POST" action="{{ mode.url }}" enctype="multipart/form-data">
+
+        <div class="form-group">
+          <label>標題</label>
+          <input name="title" value="{{ form|val_of_title }}" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label>地點</label>
+          <input name="location" value="{{ form|val_of_location }}" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label>說明</label>
+          <textarea name="desc" value="{{ form|val_of_desc }}" class="form-control" rows="3"></textarea>
+        </div>
+
+        <div class="radio">
+          <label>
+            <input type="radio" name="state" id="enable" value="1" {{ form|val_of_state == 1 ? 'checked' }}>Enable
+          </label>
+          <label>
+            <input type="radio" name="state" id="disable" value="0" {{ form|val_of_state == 0 ? 'checked' }}>Disable
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label>示意圖</label>
+          <input name="photo" value="{{ form|val_of_photo }}" type="file">
+        </div>
+
+        <div class="form-group">
+          <label>頭像</label>
+          <input name="avatar" value="{{ form|val_of_avatar }}" type="file">
+        </div>
+
+        <br />
+
+        <button type="submit" class="btn btn-primary">儲存</button>
+        <button type="reset" class="btn btn-default">重設</button>
+
+      </form>
+    </div>
+  </div>
+  <!-- /.row -->
+
+</div>
+<!-- /.container-fluid -->
+
+{% endblock content %}
