@@ -60,11 +60,19 @@
 
         <div class="form-group">
           <label>示意圖</label>
-          <input name="photo" value="{{ form|val_of_photo }}" type="file">
+          {% if form|val_of_photo != '' %}
+          <br />
+          <img width="150" src="../{{ form|val_of_photo }}" />
+          {% endif %}
+          <input name="photo" value="" type="file">
         </div>
 
         <div class="form-group">
           <label>頭像</label>
+          {% if form|val_of_photo != '' %}
+          <br />
+          <img width="50" src="../{{ form|val_of_avatar }}" />
+          {% endif %}
           <input name="avatar" value="{{ form|val_of_avatar }}" type="file">
         </div>
 
