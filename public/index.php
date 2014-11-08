@@ -48,7 +48,7 @@
   define ('_TIME',       date ('H:i:s', _TIMESTAMP));
   define ('_DATETIME',   _DATE .' '. _TIME);
 
-  define ('_SECRET',     'sKiLlMe');
+  define ('_SECRET',     'sIlVeRsKiLl');
 
 
   /**
