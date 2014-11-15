@@ -5,3 +5,4 @@ composer.lock
 /caches
 /data
 /public/land
+/public/upload
