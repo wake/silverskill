@@ -60,10 +60,11 @@ jQuery(document).ready(function ($) {
 	jQuery('.nivoSlider').each(function(){
 		jQuery(this).nivoSlider({
 			directionNav: false,
-			controlNav: true,
+			controlNav: false,
 			effect:'fade',
 			pauseTime:4000,
-			slices: 1
+			slices: 1,
+      social_tools: ''
 		});
 	});
 	

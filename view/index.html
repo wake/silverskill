@@ -92,7 +92,7 @@
             </article>
           </div>
           <div class="fw_preview_footer">
-            <a href="#" class="shortcode_button btn_small btn_type4 reamdore">我想參與</a>
+            <a href="#join-event-{{ e.id }}" rel="prettyPhoto" class="shortcode_button btn_small btn_type4 reamdore">我想參與</a>
             <div class="block_likes">
               <div class="post-views"><i class="stand_icon icon-eye"></i> <span>{{ random(1000) }}</span></div>
               <div class="gallery_likes gallery_likes_add ">
@@ -101,24 +101,24 @@
               </div>
             </div>
           </div>
-          <div class="sidepanel widget_mailchimpsf_widget">                     
-              <h6 class="sidebar_header">&nbsp;</h6>
-              <div id="mc_signup">
-                  <form id="request" method="post" action="{{ url('POST:request', {id: e.id}) }}" id="mc_signup_form" class="request">
-                      <div id="mc_subheader">請留下您的 Email，我們會儘快與您聯絡。</div>
-                      <div class="mc_form_inside">                             
-                          <div class="updated" id="mc_message"></div><!-- /mc_message -->
-                          <div class="mc_merge_var">
-                              <input type="text" size="18" placeholder="Email Address" name="email" id="email" class="mc_input email"/>
-                          </div><!-- /mc_merge_var -->
-                          <div class="mc_signup_submit">
-                              <input type="submit" name="mc_signup_submit" id="mc_signup_submit" value="送出" class="button" />
-                          </div><!-- /mc_signup_submit -->                                            
-                      </div><!-- /mc_form_inside -->
-                  </form>
-                  <br />
-              </div>           
+
+          <div id="join-event-{{ e.id }}" class="join-wrapper">
+            <div class="join-block">
+              <h4>我想參與 - {{ e.title }} 相關活動</h4>
+              <form method="post" action="{{ url('POST:request', {id: e.id}) }}" id="mc_signup_form" class="request mc_signup_form">
+                  <div id="mc_subheader">請留下您的聯繫資料，我們會協助您與長輩聯繫：
+                    <input type="text" size="18" placeholder="Email 信箱 或 聯絡電話" name="email" id="email" class="mc_input email"/>
+                    <input type="text" size="18" placeholder="我方便的時間 (平日 / 假日)" name="date" id="date" class="mc_input date"/>
+                    <textarea class="mc_input question" placeholder="我想向長輩提出的詢問 (Optional)"></textarea>
+                    <div class="mc_signup_submit">
+                        <input type="button" value="取消" class="button btn_type4 pp_close"  onclick="$.prettyPhoto.close();"/>
+                        <input type="submit" name="mc_signup_submit" id="mc_signup_submit" value="送出" class="button"/>
+                    </div><!-- /mc_signup_submit -->                                            
+                  </div><!-- /mc_form_inside -->
+              </form>
+            </div>
           </div>
+
         </div>
       </div>
       {% endfor %}
@@ -131,6 +131,7 @@
   <script>
   $(function () {
 
+    /*
     $('.reamdore').click (function () {
 
       $(this).parent ().next ().slideDown ();
@@ -140,24 +141,27 @@
       return false;
 
     });
+    */
 
-    $('form.request').submit (function () {
+    $('body').on('submit', 'form.request', function () {
 
       var email = $(this).find ('.email')
+        //, question
         , form  = $(this);
 
       if (email.val () == '')
-        alert ('請輸入 Email');
+        alert ('請輸入 Email 信箱或聯絡電話');
 
       else {
+
         $.post ($(this).attr ('action'), {
             name:  '_',
             email: email.val ()
           }, function (resp) {
 
-          form.parent ().parent ().slideUp ();
+          $.prettyPhoto.close();
 
-          setTimeout("jQuery('.is_masonry').masonry();",400);
+          //setTimeout("jQuery('.is_masonry').masonry();",400);
 
           setTimeout (function () {
 
