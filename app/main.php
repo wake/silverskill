@@ -97,6 +97,8 @@
     $data = [
       'name'  => $request->request->get ('name'),
       'email' => $request->request->get ('email'),
+      'date' => $request->request->get ('date'),
+      'question' => $request->request->get ('question'),
     ];
 
     $req = Model::factory ('Request')->create ();
@@ -104,6 +106,8 @@
     $req->eid        = $id;
     $req->name       = $data['name'];
     $req->email      = $data['email'];
+    $req->date      = $data['date'];
+    $req->question      = $data['question'];
     $req->createdate = date ('Y-m-d H:i:s');
     $req->save ();
 

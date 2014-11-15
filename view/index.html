@@ -146,7 +146,8 @@
     $('body').on('submit', 'form.request', function () {
 
       var email = $(this).find ('.email')
-        //, question
+        , date = $(this).find ('.date')
+        , question = $(this).find ('.question')
         , form  = $(this);
 
       if (email.val () == '')
@@ -155,8 +156,10 @@
       else {
 
         $.post ($(this).attr ('action'), {
-            name:  '_',
-            email: email.val ()
+            name:     '_',
+            email:    email.val (),
+            date:     date.val (),
+            question: question.val ()
           }, function (resp) {
 
           $.prettyPhoto.close();
