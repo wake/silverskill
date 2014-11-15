@@ -237,7 +237,7 @@
    * Load Controllers
    *
    */
-  $app['StructureLoader'] (['main', 'admin' => ['main', 'event']], _ROOT . '/app');
+  $app['StructureLoader'] (['main', 'admin' => ['main', 'event', 'request']], _ROOT . '/app');
 
 
   /**

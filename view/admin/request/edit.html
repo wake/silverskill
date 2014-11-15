@@ -1,0 +1,75 @@
+{% extends "admin/layout.html" %}
+
+{% set page = 'list_vege' %}
+
+{% if operate == 'add' %}
+{% set mode = {url: url('POST:admin/request/add')} %}
+{% else %}
+{% set mode = {url: url('POST:admin/request/edit', {id: id})} %}
+{% endif %}
+
+{% block content %}
+
+  <!-- Page Heading -->
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">
+        List
+      </h1>
+      <ol class="breadcrumb">
+        <li>
+          <i class="fa fa-dashboard"></i>  <a href="{{ url('admin/request/list') }}">Request</a>
+        </li>
+        <li class="active">
+          <i class="fa fa-table"></i> Edit
+        </li>
+      </ol>
+    </div>
+  </div>
+  <!-- /.row -->
+
+  <div class="row">
+    <div class="col-lg-6">
+      <h2>Data edit</h2>
+
+      <form role="form" method="POST" action="{{ mode.url }}" enctype="multipart/form-data">
+
+        <div class="form-group">
+          <label>參與活動</label>
+          <select name="eid" class="form-control">
+            <option value="0"></option>
+            {% for e in event %}
+            <option value="{{ e.id }}" {{ e.id == form|val_of_eid ? 'selected' }}>{{ e.title }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>聯絡方式</label>
+          <input name="email" value="{{ form|val_of_email }}" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label>方便時間</label>
+          <input name="date" value="{{ form|val_of_date }}" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label>詢問問題</label>
+          <textarea name="question" class="form-control" rows="3">{{ form|val_of_question }}</textarea>
+        </div>
+
+        <br />
+
+        <button type="submit" class="btn btn-primary">儲存</button>
+        <button type="reset" class="btn btn-default">重設</button>
+
+      </form>
+    </div>
+  </div>
+  <!-- /.row -->
+
+</div>
+<!-- /.container-fluid -->
+
+{% endblock content %}
